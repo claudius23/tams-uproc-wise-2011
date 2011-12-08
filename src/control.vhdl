@@ -47,7 +47,7 @@ begin  -- behavior
       register_value_in_b <= z_word;      
 		--register_value_out_a <= z_word;
       --register_value_out_b <= z_word;
-      register_enabled <= '0';
+      register_enabled <= '1';
     
       if clock'event and clock = '1' then
         -- rising clock edge

@@ -42,7 +42,7 @@ architecture behavior of processor is
       register_count : integer range 1 to 64 := register_count);
     port (
       register_select_in_a, register_select_in_b : in integer range 0 to register_count-1;
-		register_select_out_a, register_select_out_b : out integer range 0 to register_count-1;
+		register_select_out_a, register_select_out_b : in integer range 0 to register_count-1;
       register_value_in_a,  register_value_in_b  : in data_bus;
 		register_value_out_a, register_value_out_b : out data_bus;
       register_write              : in std_logic;
@@ -76,10 +76,10 @@ architecture behavior of processor is
       alu_enabled     : out std_logic;    -- enable alu?
 
       -- register signals
-		register_select_in_a, register_select_in_b : in integer range 0 to register_count-1;
-      register_select_out_a, register_select_out_b : out integer range 0 to register_count-1;
-      register_value_in_a, register_value_in_b   : in data_bus;
-		register_value_out_a, register_value_out_b   : out data_bus;
+		register_select_in_a, register_select_in_b : out integer range 0 to register_count-1;
+      register_select_out_a, register_select_out_b : in integer range 0 to register_count-1;
+      register_value_in_a, register_value_in_b   : out data_bus;
+		register_value_out_a, register_value_out_b   : in data_bus;
       register_write, register_enabled     : out std_logic);
   end component;
 
