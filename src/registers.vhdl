@@ -10,10 +10,12 @@ entity registers is
     register_count : integer range 1 to 64 := 32);  -- number of registers
 
   port (
-    select_a, select_b : in integer range 0 to register_count;
-    value_a, value_b   : inout data_bus;
-    write              : in std_logic;   -- set to 1 to write
-    enabled            : in std_logic);  -- set to 1 to enable
+    register_select_in_a, register_select_in_b : in integer range 0 to register_count-1;
+	 register_select_out_a, register_select_out_b : in integer range 0 to register_count-1;
+    register_value_in_a, register_value_in_b   : in  data_bus;
+	 register_value_out_a, register_value_out_b   : out data_bus;
+    register_write              : in std_logic;   -- set to 1 to write
+    register_enabled            : in std_logic);  -- set to 1 to enable
 end registers;
 
 architecture behavior of registers is
@@ -23,23 +25,23 @@ architecture behavior of registers is
 begin  -- behavior
   -- purpose: read and write values
   -- type   : sequential
-  -- inputs : enabled, select_a, select_b, value_a, value_b, write
-  -- outputs: value_a, value_b
-  process (enabled)
+  -- inputs : enabled, register_select_a, register_select_b, register_value_a, register_value_b, write
+  -- outputs: register_value_a, register_value_b
+  process (register_enabled)
     variable register_bank : register_bank_t;  -- the register bank
   begin  -- process
-    value_a <= z_word;
-    value_b <= z_word;
-
-    if enabled'event and enabled = '1' then
-      case write is
+    --register_value_out_a <= z_word;	
+    --register_register_value_out_b <= z_word;
+	 
+    if register_enabled = '1' then
+      case register_write is
         when '1' =>
-          register_bank(select_a) := value_a;
-          register_bank(select_b) := value_b;
+          register_bank(register_select_in_a) := register_value_in_a;
+          register_bank(register_select_in_b) := register_value_in_b;
         when '0' =>
-          value_a <= register_bank(select_a);
-          value_b <= register_bank(select_b);
-          --value_b <= zero_word;
+          register_value_out_a <= register_bank(register_select_in_a);
+          register_value_out_b <= register_bank(register_select_in_b);
+          --register_value_b <= zero_word;
         when others =>
           null;
       end case;

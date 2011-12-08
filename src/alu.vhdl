@@ -7,10 +7,10 @@ use work.types.all;
 entity alu is
 
   port (
-    operand_0, operand_1 : in data_bus;
-    result               : out data_bus;
-    enabled              : in std_logic;
-    OpCode     : in alu_opcode_t);
+    alu_operand_0, alu_operand_1 : in data_bus;
+    alu_result               : out data_bus;
+    alu_enabled              : in std_logic;
+    alu_OpCode     : in alu_opcode_t);
 
 end alu;
 
@@ -22,24 +22,24 @@ begin  -- behavior
   variable add_result : std_logic_vector(word_width downto 0);  -- one bit wider than word
   begin  -- process
     if(rising_edge(enabled)) then
-      case OpCode is
+      case alu_OpCode is
         when alu_add =>
-          add_result := std_logic_vector(unsigned('0' & operand_0) + unsigned('0' & operand_1));
+          add_result := std_logic_vector(unsigned('0' & alu_operand_0) + unsigned('0' & alu_operand_1));
           result <= add_result(add_result'high - 1 downto 0);
         --when alu_sub =>
-        --  result <= operand_0 - operand_1;
+        --  result <= alu_operand_0 - alu_operand_1;
         --when alu_mul =>
-        --  result <= operand_0 * operand_1;
+        --  result <= alu_operand_0 * alu_operand_1;
         --when alu_div =>
-        --  result <= operand_0 / operand_1;
+        --  result <= alu_operand_0 / alu_operand_1;
         when alu_and =>
-          result <= operand_0 and operand_1;
+          result <= alu_operand_0 and alu_operand_1;
         when alu_or =>
-          result <= operand_0 or operand_1;
+          result <= alu_operand_0 or alu_operand_1;
         when alu_xor =>
-          result <= operand_0 xor operand_1;
+          result <= alu_operand_0 xor alu_operand_1;
         when alu_not =>
-          result <= not operand_0;
+          alu_result <= not alu_operand_0;
         when others =>
           NULL;
       end case;

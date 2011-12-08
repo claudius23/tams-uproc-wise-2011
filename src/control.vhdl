@@ -19,8 +19,10 @@ entity control is
     alu_enabled     : out std_logic;    -- enable alu?
 
     -- register signals
-    register_select_a, register_select_b : out integer range 1 to 32;
-    register_value_a, register_value_b   : inout data_bus;
+	 register_select_in_a, register_select_in_b : out integer range 0 to 31;
+    register_select_out_a, register_select_out_b : in integer range 0 to 31;
+    register_value_in_a, register_value_in_b   : out data_bus;
+	 register_value_out_a, register_value_out_b   : in data_bus;
     register_write, register_enabled     : out std_logic);
 end control;
 
@@ -34,27 +36,34 @@ begin  -- behavior
   -- outputs: various
   execute: process (clock)
   begin  -- process execute
-    if clock'event then
+    ---if clock'event then
       -- initialize signals
       alu_enabled <= '0';
-      register_value_a <= z_word;
-      register_value_b <= z_word;
+		register_select_in_a <= 0;
+		register_select_in_b <= 1;
+		--register_select_out_a <= 0;
+		--register_select_out_b <= 1;
+		register_value_in_a <= z_word;
+      register_value_in_b <= z_word;      
+		--register_value_out_a <= z_word;
+      --register_value_out_b <= z_word;
       register_enabled <= '0';
     
-      if clock = '1' then
+      if clock'event and clock = '1' then
         -- rising clock edge
         alu_operand_0 <= one_word;
         alu_operand_1 <= two_word;
         alu_instruction <= alu_add;
         alu_enabled <= '1';
-      else
-        -- falling clock edge
-        register_value_a <= alu_result;
-        register_select_a <= 0;
-        register_enabled <= '1';
-        register_write <= '1';
-      end if;
-    end if;
+      --else
+			elsif clock'event and clock = '0' then
+			-- falling clock edge
+			register_value_in_a <= alu_result;
+			register_select_in_a <= 0; --todo
+			register_enabled <= '1';
+			register_write <= '1';
+			end if;
+		--end if;
   end process execute;
 
 end behavior;
