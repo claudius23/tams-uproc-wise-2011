@@ -45,8 +45,7 @@ architecture behavior of processor is
 		register_select_out_a, register_select_out_b : in integer range 0 to register_count-1;
       register_value_in_a,  register_value_in_b  : in data_bus;
 		register_value_out_a, register_value_out_b : out data_bus;
-      register_write              : in std_logic;
-      register_enabled            : in std_logic);
+      register_write_enabled              : in std_logic);
   end component;
 
   for registers_0 : registers
@@ -57,8 +56,7 @@ architecture behavior of processor is
   signal register_select_out_a, register_select_out_b : integer range 0 to register_count-1;
   signal register_value_in_a, register_value_in_b   : data_bus;
   signal register_value_out_a, register_value_out_b   : data_bus;
-  signal register_write                       : std_logic;
-  signal register_enabled                     : std_logic;
+  signal register_write_enabled                       : std_logic;
 
   -- control unit
   component control is
@@ -80,7 +78,7 @@ architecture behavior of processor is
       register_select_out_a, register_select_out_b : in integer range 0 to register_count-1;
       register_value_in_a, register_value_in_b   : out data_bus;
 		register_value_out_a, register_value_out_b   : in data_bus;
-      register_write, register_enabled     : out std_logic);
+      register_write_enabled     : out std_logic);
   end component;
 
   for control_0 : control
@@ -107,8 +105,7 @@ begin
     register_value_in_b  => register_value_in_b,
 	 register_value_out_a  => register_value_out_a,
     register_value_out_b  => register_value_out_b,
-    register_write    => register_write,
-    register_enabled  => register_enabled);
+    register_write_enabled    => register_write_enabled);
 
   control_0: control port map (
     alu_operand_0 => alu_operand_0,
@@ -122,8 +119,7 @@ begin
     register_value_in_b => register_value_in_b,
 	 register_value_out_a => register_value_out_a,
     register_value_out_b => register_value_out_b,
-    register_write => register_write,
-    register_enabled => register_enabled,
+    register_write_enabled => register_write_enabled,
     interrupt => interrupt_in,
     clock => clock_in);
 

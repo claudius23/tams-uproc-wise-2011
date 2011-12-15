@@ -23,7 +23,7 @@ entity control is
     register_select_out_a, register_select_out_b : in integer range 0 to 31;
     register_value_in_a, register_value_in_b   : out data_bus;
 	 register_value_out_a, register_value_out_b   : in data_bus;
-    register_write, register_enabled     : out std_logic);
+    register_write_enabled     : out std_logic);
 end control;
 
 architecture behavior of control is
@@ -47,7 +47,7 @@ begin  -- behavior
       register_value_in_b <= z_word;      
 		--register_value_out_a <= z_word;
       --register_value_out_b <= z_word;
-      register_enabled <= '1';
+      --register_enabled <= '1';
     
       if clock'event and clock = '1' then
         -- rising clock edge
@@ -60,8 +60,7 @@ begin  -- behavior
 			-- falling clock edge
 			register_value_in_a <= alu_result;
 			register_select_in_a <= 0; --todo
-			register_enabled <= '1';
-			register_write <= '1';
+			register_write_enabled <= '1';
 			end if;
 		--end if;
   end process execute;
