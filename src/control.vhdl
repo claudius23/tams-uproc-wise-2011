@@ -36,7 +36,7 @@ begin  -- behavior
   -- outputs: various
   execute: process (clock)
   begin  -- process execute
-    ---if clock'event then
+    --if clock'event then
       -- initialize signals
       alu_enabled <= '0';
 		register_select_in_a <= 0;
@@ -49,19 +49,19 @@ begin  -- behavior
       --register_value_out_b <= z_word;
       --register_enabled <= '1';
     
-      if clock'event and clock = '1' then
-        -- rising clock edge
+      --if clock'event and clock = '1' then
+		  -- rising clock edge
         alu_operand_0 <= one_word;
         alu_operand_1 <= two_word;
         alu_instruction <= alu_add;
         alu_enabled <= '1';
       --else
-			elsif clock'event and clock = '0' then
+		--	elsif clock'event and clock = '0' then
 			-- falling clock edge
 			register_value_in_a <= alu_result;
 			register_select_in_a <= 0; --todo
 			register_write_enabled <= '1';
-			end if;
+		--	end if;
 		--end if;
   end process execute;
 
