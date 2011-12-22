@@ -57,11 +57,11 @@ architecture behavior of registers_tb is
         type registers_tests is array (natural range <>) of registers_test;
         constant tests : registers_tests :=
           (
-            (0, 1, zero_word, one_word),
-            (0, 1, one_word, zero_word),
-            (2, 3, two_word, zero_word),
-            (0, 1, zero_word, three_word),
-            (2, 3, zero_word, zero_word)
+            (0, 0, 1, 1, zero_word, one_word),
+            (0, 0, 1, 1, one_word, zero_word),
+            (2, 2, 3, 3, two_word, zero_word),
+            (0, 0, 1, 1, zero_word, three_word),
+            (2, 2, 3, 3, zero_word, zero_word)
           );
 
       begin  -- process
