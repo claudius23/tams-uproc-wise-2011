@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone III"
 set_global_assignment -name DEVICE EP3C25E144C7
-set_global_assignment -name TOP_LEVEL_ENTITY processor
+set_global_assignment -name TOP_LEVEL_ENTITY Processor
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 11.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:08:19  NOVEMBER 30, 2011"
 set_global_assignment -name LAST_QUARTUS_VERSION 11.1
@@ -51,19 +51,14 @@ set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "Design Compiler"
 set_global_assignment -name EDA_INPUT_VCC_NAME VDD -section_id eda_design_synthesis
 set_global_assignment -name EDA_LMF_FILE altsyn.lmf -section_id eda_design_synthesis
 set_global_assignment -name EDA_INPUT_DATA_FORMAT VHDL -section_id eda_design_synthesis
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VHDL_FILE control.vhdl
-set_global_assignment -name VHDL_FILE types.vhdl
-set_global_assignment -name VHDL_TEST_BENCH_FILE registers_tb.vhdl
-set_global_assignment -name VHDL_FILE registers.vhdl
-set_global_assignment -name VHDL_FILE processor.vhdl
-set_global_assignment -name VHDL_TEST_BENCH_FILE alu_tb.vhdl
-set_global_assignment -name VHDL_FILE alu.vhdl
+set_global_assignment -name VHDL_FILE Processor.vhd
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE pck_myhdl_07.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
