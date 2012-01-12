@@ -43,6 +43,11 @@ def RegisterBank(
         value_b.next = registers[select_b]
     
 
+    @always_comb
+    def read_logic():
+        value_a.next = registers[select_a]
+        value_b.next = registers[select_b]
+
     @always(clock.posedge)
     def logic():
         '''
