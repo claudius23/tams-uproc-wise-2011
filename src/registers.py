@@ -36,12 +36,12 @@ def RegisterBank(
     '''
 
     registers = [Signal(data_bus(0)) for i in range(number_of_registers)]
-    
+
     @always_comb
     def read_logic():
         value_a.next = registers[select_a]
         value_b.next = registers[select_b]
-    
+
 
     @always_comb
     def read_logic():
