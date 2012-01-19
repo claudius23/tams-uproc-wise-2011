@@ -72,11 +72,25 @@ def bench():
     def stimulus():
         for i in range(100):
             for operator, compute_result in (
-                (alu_opcode_t.add, lambda a, b: a + b),
-                (alu_opcode_t.sub, lambda a, b: a - b),
+                (alu_opcode_t.add,      lambda a, b: a + b),
+                (alu_opcode_t.sub,      lambda a, b: a - b),
+                (alu_opcode_t.mul,      lambda a, b: a * b),
+                (alu_opcode_t.div,      lambda a, b: a / b),
+                (alu_opcode_t.alu_and,  lambda a, b: a & b),
+                (alu_opcode_t.alu_or,   lambda a, b: a | b),
+                (alu_opcode_t.alu_xor,  lambda a, b: a ^ b),
+                (alu_opcode_t.alu_not,  lambda a, b: not a),
+                (alu_opcode_t.alu_eq,   lambda a, b: a == b), 
+                (alu_opcode_t.alu_neq,  lambda a, b: a != b),
+                (alu_opcode_t.alu_gt,   lambda a, b: a > b),
+                (alu_opcode_t.alu_lt,   lambda a, b: a < b),
+                (alu_opcode_t.alu_ge,   lambda a, b: a >= b),
+                (alu_opcode_t.alu_le,   lambda a, b: a <= b),
                 ):
-                a = random.randrange(-2 ** 30, 2 ** 30)
-                b = random.randrange(-2 ** 30, 2 ** 30)
+#                a = random.randrange(-2 ** 30, 2 ** 30)
+#                b = random.randrange(-2 ** 30, 2 ** 30)
+                a = random.randrange(-2 ** 15, 2 ** 15)
+                b = random.randrange(-2 ** 15, 2 ** 15)
                 expect = compute_result(a, b)
 
                 opcode.next = operator
