@@ -39,6 +39,9 @@ def RegisterBank(
 
     @always_comb
     def read_logic():
+        '''
+        Handles reads to the register bank.
+        '''
         value_a.next = registers[select_a]
         value_b.next = registers[select_b]
 
@@ -51,7 +54,7 @@ def RegisterBank(
     @always(clock.posedge)
     def logic():
         '''
-        Updates the values stored in the register bank. Also handles reads.
+        Updates the values stored in the register bank.
         '''
         if write_enabled:
             registers[update_select_a].next = update_value_a
